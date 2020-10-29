@@ -41,13 +41,11 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-        Character character = 'a';
-        archivate("Test.txt");
-        Path path = Paths.get("");
-        byte [] bytes = Files.readAllBytes(path.resolve("original.jpg"));
-        Files.createFile(path.resolve("original1.bin"));
-        Files.write(path.resolve(path.resolve("original1.bin")),bytes);
-        Files.move(path.resolve("original1.bin"),path.resolve("original1.jpg"));
+        int [] numbOfBytes = new int[256];
+        System.out.println(numbOfBytes);
+        System.out.println(  Integer.toBinaryString((byte)-1  & 0xFF));
+       int a = 0b1111_1111;
+        System.out.println(a);
 
     }
 }
