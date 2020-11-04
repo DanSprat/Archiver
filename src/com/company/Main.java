@@ -8,13 +8,13 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException, ArchiverException {
-        String pathFile = ""; // Путь к файлу или папке для архивации
-        String outDir =""; // Место создания архива
-        String name="";//Название архива
+        String pathFile = "C:\\Users\\Work\\IdeaProjects\\Archivator\\Test"; // Путь к файлу или папке для архивации
+        String outDir ="C:\\Users\\Work\\Documents\\Tests"; // Место создания архива
+        String name="Test";//Название архива
         Archiver.compress(pathFile,outDir,name);
 
-        String Archive = ""; // Путь к архиву
-        String out=""; // Путь к месту разархивации
+        String Archive = "C:\\Users\\Work\\Documents\\Tests\\TestZIP"; // Путь к архиву
+        String out="C:\\Users\\Work\\Documents\\матан"; // Путь к месту разархивации
         Archiver.extract(Archive,out);
     }
 }
