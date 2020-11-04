@@ -2,13 +2,13 @@ package com.company.PriorityHuffmanTree;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.PriorityQueue;
 
 public class HuffmanTree {
 
     private PriorityQueue <Node> priorityQueue;
-    private ArrayList<String> map;
-    String [] strings;
+    HashMap<Integer,String> mapOfChar;
 
     public HuffmanTree(){
         priorityQueue = new PriorityQueue<>(new Comparator<Node>() {
@@ -17,8 +17,7 @@ public class HuffmanTree {
                 return Integer.compare(node.weight,t1.weight);
             }
         });
-        map = new ArrayList<>(256);
-        strings = new String[256];
+      mapOfChar = new HashMap<>();
     }
     public void add(Node node){
         priorityQueue.offer(node);
@@ -29,19 +28,19 @@ public class HuffmanTree {
         }
     }
 
-    private String [] toAlphabet(String s,Node node){
+    private HashMap<Integer, String> toAlphabet(String s, Node node){
         if(node.right!=null){
            toAlphabet(s+"1",node.right);
         }
         if (node.right == null && node.left == null) {
-            strings[node.byteValue]=s;
+            mapOfChar.put(node.byteValue,s);
         }
         if (node.left!=null) {
             toAlphabet(s+0,node.left);
         }
-        return strings;
+        return mapOfChar;
     }
-    public String [] toAlphabet(){
+    public HashMap<Integer, String> toAlphabet(){
         return toAlphabet("",priorityQueue.peek());
     }
 
@@ -57,7 +56,6 @@ public class HuffmanTree {
         huffmanTree.add(new Node (3,6));
         huffmanTree.add(new Node (4,7));
         huffmanTree.toTree();
-        String [] arrayList = huffmanTree.toAlphabet();
 
     }
 }

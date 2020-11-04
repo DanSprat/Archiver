@@ -42,6 +42,7 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
         int [] numbOfBytes = new int[256];
+        System.out.println(-17 & 0xFF);
         System.out.println(numbOfBytes);
         System.out.println(  Integer.toBinaryString((byte)-1  & 0xFF));
        int a = 0b1111_1111;
