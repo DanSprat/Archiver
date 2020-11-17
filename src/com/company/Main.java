@@ -1,53 +1,31 @@
 package com.company;
 
-import com.company.Classes.TreeList;
 
-import java.io.*;
-import java.lang.reflect.Array;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.HashMap;
+import com.company.Exceptions.ArchiverException;
+import com.company.PriorityHuffmanTree.Archiver;
+
+import java.io.IOException;
 
 public class Main {
-    public  static void archivate(String str){
-        Path path = Paths.get(str);
-        try {
-            int count =0;
-            String s = Files.readString(path, Charset.defaultCharset());
-            HashMap <Character,Integer> mapOfChars= new HashMap<>();
-            for (Character character:s.toCharArray()){
-                if (mapOfChars.containsKey(character)){
-                    mapOfChars.replace(character,mapOfChars.get(character)+1);
-                } else {
-                    mapOfChars.put(character,1);
-                }
-                count++;
-            }
-            TreeList treeList = new TreeList();
-            for (var it:mapOfChars.entrySet()){
-                treeList.add(it.getValue(),false,it.getKey());
-            }
-            treeList.stabilize();
-            HashMap<Character,String> hashMap = new HashMap<>();
-            treeList.BinaryAlphabet(hashMap,s="");
-            System.out.println(hashMap);
-        } catch (Exception ex){
-            System.err.println(ex.getMessage());
+    public static void main(String[] args) throws IOException, ArchiverException {
+        if (args.length == 3){
+            // args[0] - Путь к файлу или папке для архивации
+            // args[1] - Место создания архива
+            // args[2] - Название архива
+            Archiver.compress(args[0],args[1],args[2]);
+        } else if (args.length == 2){
+            // args[0] - Путь к архиву
+            // args[1] - Путь к месту разархивации
+            Archiver.extract(args[0],args[1]);
         }
-    }
 
+       /* String pathFile = "C:\\Users\\Work\\IdeaProjects\\Archivator\\Test"; // Путь к файлу или папке для архивации
+        String outDir ="C:\\Users\\Work\\Documents\\Tests"; // Место создания архива
+        String name="Test";//Название архива
+        Archiver.compress(pathFile,outDir,name);
 
-    public static void main(String[] args) throws IOException {
-        Character character = 'a';
-        archivate("Test.txt");
-        Path path = Paths.get("");
-        byte [] bytes = Files.readAllBytes(path.resolve("original.jpg"));
-        Files.createFile(path.resolve("original1.bin"));
-        Files.write(path.resolve(path.resolve("original1.bin")),bytes);
-        Files.move(path.resolve("original1.bin"),path.resolve("original1.jpg"));
-
+        String Archive = "C:\\Users\\Work\\Documents\\Tests\\TestZIP"; // Путь к архиву
+        String out="C:\\Users\\Work\\Documents\\матан"; // Путь к месту разархивации
+        Archiver.extract(Archive,out);*/
     }
 }
